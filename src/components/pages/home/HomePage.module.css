@@ -6,3 +6,30 @@
   border-right: 1px solid #232323;
   box-shadow: 12px 0 15px -4px #232323, -12px 0 15px -4px #232323;
 }
+
+.Root .HomePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../../../assets//movie_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left bottom;
+  background-position: center;
+}
+
+.Root .HomePage .Title {
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
+.Root .HomePage .InputContainer {
+  margin-bottom: 50px;
+}
+
+.Link {
+  text-decoration: none;
+}

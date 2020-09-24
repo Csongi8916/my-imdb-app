@@ -5,7 +5,7 @@ import { TextField, withStyles } from '@material-ui/core';
 interface MovieTextInputProps {
   value: string;
   label?: string;
-  placeholder: string;
+  placeholder?: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
