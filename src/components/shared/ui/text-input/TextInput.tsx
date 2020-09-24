@@ -3,8 +3,10 @@ import React from 'react';
 import { TextField, withStyles } from '@material-ui/core';
 
 interface MovieTextInputProps {
-  label: string;
+  value: string;
+  label?: string;
   placeholder: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CustomTextField = withStyles({
@@ -36,6 +38,14 @@ const CustomTextField = withStyles({
 })(TextField);
 
 export default function MovieTextField(props: MovieTextInputProps) {
-  const { label, placeholder } = props;
-  return <CustomTextField variant='outlined' label={label} placeholder={placeholder} />;
+  const { value, label, placeholder, setState } = props;
+  return (
+    <CustomTextField
+      onChange={(e) => setState(e.currentTarget.value)}
+      variant='outlined'
+      label={label}
+      placeholder={placeholder}
+      value={value}
+    />
+  );
 }

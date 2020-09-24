@@ -1,0 +1,22 @@
+.MovieDetailsTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../../../assets//movie_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left bottom;
+  background-position: center;
+}
+
+.MovieDetailsTop .Title {
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
+.MovieDetailsTop .InputContainer {
+  margin-bottom: 50px;
+}
