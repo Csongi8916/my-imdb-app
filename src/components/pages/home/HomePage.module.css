@@ -2,4 +2,7 @@
   width: 1200px;
   height: 100vh;
   background-color: #232323;
+  border-left: 1px solid #232323;
+  border-right: 1px solid #232323;
+  box-shadow: 12px 0 15px -4px #232323, -12px 0 15px -4px #232323;
 }
