@@ -9,7 +9,7 @@ export default function MovieCard(props: MovieCardProps) {
   const getGenres = () => {
     if (genres && genres.length > 0) {
       return genres.filter((genre: Genre) => {
-        return movie.genre_ids.includes(genre, genre.id);
+        return movie.genre_ids.includes(genre.id);
       });
     }
     return [];

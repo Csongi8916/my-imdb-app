@@ -40,18 +40,18 @@ export default function MovieDetailResultPage(props: any) {
     const searchParam: string = props.location.search ? props.location.search.split('=')[PARAM] : '';
     const fetchData = async () => {
       const genreResult = await axios.get(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
       );
       setGenres(genreResult.data.genres);
 
       if (!needSimilarMovie.need) {
         const moviesResult = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US&query=${searchParam}`,
+          `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchParam}`,
         );
         setMovies(moviesResult.data.results);
       } else {
         const moviesResult = await axios.get(
-          `https://api.themoviedb.org/3/movie/${needSimilarMovie.movieId}/similar?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
+          `https://api.themoviedb.org/3/movie/${needSimilarMovie.movieId}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
         );
         setMovies(moviesResult.data.results);
       }
