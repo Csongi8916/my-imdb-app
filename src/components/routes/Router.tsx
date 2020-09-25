@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../pages/home';
-import MovieResult from '../pages/movie-result/MovieResultPage';
-import MovieCard from '../shared/movies-card';
+import MovieDetailResultPage from '../pages/movie-result/MovieDetailResultPage';
 
 export default function Router() {
   return (
     <Switch>
       <Route path='/' exact component={HomePage} />
-      <Route path='/movies' component={MovieResult} />
+      <Route path='/movies' component={MovieDetailResultPage} />
     </Switch>
   );
 }

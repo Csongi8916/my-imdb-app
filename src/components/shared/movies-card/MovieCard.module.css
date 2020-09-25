@@ -1,0 +1,16 @@
+.MovieCard {
+  margin: 25px 15px 25px 15px;
+}
+
+.MovieCard .Title {
+  cursor: pointer;
+}
+
+.MovieCard .Title:hover {
+  text-decoration: underline;
+}
+
+.MovieCard .DataContainer {
+  display: flex;
+  flex-direction: column;
+}
