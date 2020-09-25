@@ -4,8 +4,9 @@ import style from './MovieDetailTop.module.css';
 
 import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
+import { MovieDetailTopProps } from '../../../models/propTypes';
 
-export default function MovieDetailTop(props: any) {
+export default function MovieDetailTop(props: MovieDetailTopProps) {
   const { movie, needSimilarMovie, toogleSimilarMovie } = props;
   const [intro, setIntro] = useState('');
 
@@ -28,11 +29,17 @@ export default function MovieDetailTop(props: any) {
             <>
               <h2>{movie.title}</h2>
               <div>{ReactHtmlParser(intro)}</div>
-              <a className={style.WikiBtn} target='_blank' href={`https://en.wikipedia.org/wiki/${movie.title}`}>
+              <a
+                className={style.WikiBtn}
+                target='_blank'
+                rel='noopener noreferrer'
+                href={`https://en.wikipedia.org/wiki/${movie.title}`}
+              >
                 <Button variant='contained' color='secondary'>
                   Wiki
                 </Button>
               </a>
+
               <div className={style.SwitchContainer}>
                 <span className={style.SwitchText}>Similar movies:</span>
                 <Switch

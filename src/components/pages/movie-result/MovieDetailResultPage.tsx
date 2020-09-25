@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import style from './MovieDetailResultPage.module.css';
+import { SimilarMovie } from '../../../models/stateTypes';
 
 //import { gql, useQuery } from '@apollo/client';
 import axios from 'axios';
 import { CircularProgress } from '@material-ui/core';
 import MovieDetailTop from '../../shared/movie-detail-top';
 import MoveResult from '../../shared/movie-result';
+import { Genre, Movie } from '../../../models/entityTypes';
 
 //grapql query
 /*const param = '';
@@ -26,15 +28,10 @@ const getMoviesQuery = gql`
 
 const PARAM = 1;
 
-interface SimilarMovie {
-  need: boolean;
-  movieId: number;
-}
-
 export default function MovieDetailResultPage(props: any) {
-  const [movies, setMovies] = useState<Array<any>>([]);
-  const [genres, setGenres] = useState<Array<any>>([]);
-  const [selectedMovie, setSelectedMovie] = useState({});
+  const [movies, setMovies] = useState<Array<Movie>>([]);
+  const [genres, setGenres] = useState<Array<Genre>>([]);
+  const [selectedMovie, setSelectedMovie] = useState<Movie>({ id: 0, title: '', genre_ids: [] });
   const [needSimilarMovie, setNeedSimilarMovie] = useState<SimilarMovie>({ need: false, movieId: 0 });
 
   useEffect(() => {

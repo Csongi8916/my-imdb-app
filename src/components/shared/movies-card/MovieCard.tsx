@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Genre } from '../../../models/entityTypes';
+import { MovieCardProps } from '../../../models/propTypes';
 import style from './MovieCard.module.css';
 
-export default function MovieCard(props: any) {
+export default function MovieCard(props: MovieCardProps) {
   const { movie, genres, selectMovie } = props;
 
   const getGenres = () => {
     if (genres && genres.length > 0) {
-      return genres.filter((genre: any) => {
-        return movie.genre_ids.includes(genre.id);
+      return genres.filter((genre: Genre) => {
+        return movie.genre_ids.includes(genre, genre.id);
       });
     }
     return [];
@@ -25,7 +27,7 @@ export default function MovieCard(props: any) {
       <div className={style.DataContainer}>
         <span className={style.SubTitle}>Score: {movie.vote_average}</span>
         <span className={style.SubTitle}>Genres:</span>
-        {getGenres().map((genre: any) => {
+        {getGenres().map((genre: Genre) => {
           return <span key={genre.id}>{genre.name}</span>;
         })}
       </div>
