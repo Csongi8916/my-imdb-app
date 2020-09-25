@@ -1,4 +1,4 @@
-import { Button, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress, Switch } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import style from './MovieDetailTop.module.css';
 
@@ -6,17 +6,16 @@ import ReactHtmlParser from 'react-html-parser';
 import axios from 'axios';
 
 export default function MovieDetailTop(props: any) {
-  const { movie } = props;
+  const { movie, needSimilarMovie, toogleSimilarMovie } = props;
   const [intro, setIntro] = useState('');
 
   useEffect(() => {
-    debugger;
     setIntro('');
     const fetchData = async () => {
       const result = await axios.get(
         `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${movie.title}`,
       );
-      setIntro(result.data.query.search[0].snippet);
+      result.data.query ? setIntro(result.data.query.search[0].snippet) : setIntro('No content!');
     };
     fetchData();
   }, [movie]);
@@ -34,6 +33,19 @@ export default function MovieDetailTop(props: any) {
                   Wiki
                 </Button>
               </a>
+              <div className={style.SwitchContainer}>
+                <span className={style.SwitchText}>Similar movies:</span>
+                <Switch
+                  checked={needSimilarMovie.need}
+                  onChange={() =>
+                    toogleSimilarMovie(
+                      needSimilarMovie.need ? { need: false, movieId: 0 } : { need: true, movieId: movie.id },
+                    )
+                  }
+                  name='search-state'
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                />
+              </div>
             </>
           ) : (
             <CircularProgress color='secondary' size={25} className={style.Progress} />

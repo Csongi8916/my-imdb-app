@@ -26,34 +26,52 @@ const getMoviesQuery = gql`
 
 const PARAM = 1;
 
+interface SimilarMovie {
+  need: boolean;
+  movieId: number;
+}
+
 export default function MovieDetailResultPage(props: any) {
   const [movies, setMovies] = useState<Array<any>>([]);
   const [genres, setGenres] = useState<Array<any>>([]);
   const [selectedMovie, setSelectedMovie] = useState({});
+  const [needSimilarMovie, setNeedSimilarMovie] = useState<SimilarMovie>({ need: false, movieId: 0 });
 
   useEffect(() => {
-    //setTimeout -> Just for spinner testing
-    setTimeout(() => {
-      const searchParam: string = props.location.search ? props.location.search.split('=')[PARAM] : '';
-      const fetchData = async () => {
-        const genreResult = await axios.get(
-          `https://api.themoviedb.org/3/genre/movie/list?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
-        );
+    //setTimeout -> just gor spinner test
+    //setTimeout(() => {
+    const searchParam: string = props.location.search ? props.location.search.split('=')[PARAM] : '';
+    const fetchData = async () => {
+      const genreResult = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
+      );
+      setGenres(genreResult.data.genres);
+
+      if (!needSimilarMovie.need) {
         const moviesResult = await axios.get(
           `https://api.themoviedb.org/3/search/movie?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US&query=${searchParam}`,
         );
-        setGenres(genreResult.data.genres);
         setMovies(moviesResult.data.results);
-      };
-      fetchData();
-    }, 2000);
-  }, []);
+      } else {
+        const moviesResult = await axios.get(
+          `https://api.themoviedb.org/3/movie/337401/similar?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
+        );
+        setMovies(moviesResult.data.results);
+      }
+    };
+    fetchData();
+    //}, 2000);
+  }, [needSimilarMovie]);
 
   return (
     <>
       {movies && movies.length > 0 ? (
         <div className={style.MovieResult}>
-          <MovieDetailTop movie={selectedMovie} />
+          <MovieDetailTop
+            movie={selectedMovie}
+            needSimilarMovie={needSimilarMovie}
+            toogleSimilarMovie={setNeedSimilarMovie}
+          />
           <MoveResult movies={movies} genres={genres} selectMovie={setSelectedMovie} />
         </div>
       ) : (

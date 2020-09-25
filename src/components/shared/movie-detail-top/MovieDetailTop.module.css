@@ -17,7 +17,15 @@
   background-position: center;
 }
 
-.WikiBtn {
+.MovieDetailTop .WikiBtn {
   margin-top: 25px;
   text-decoration: none;
+}
+
+.MovieDetailTop .SwitchContainer {
+  margin-top: 25px;
+}
+
+.MovieDetailTop .SwitchContainer .SwitchText {
+  font-size: 18px;
 }

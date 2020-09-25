@@ -6,7 +6,7 @@ export default function MovieCard(props: any) {
 
   const getGenres = () => {
     if (genres && genres.length > 0) {
-      return genres.filter((genre) => {
+      return genres.filter((genre: any) => {
         return movie.genre_ids.includes(genre.id);
       });
     }
@@ -25,7 +25,7 @@ export default function MovieCard(props: any) {
       <div className={style.DataContainer}>
         <span className={style.SubTitle}>Score: {movie.vote_average}</span>
         <span className={style.SubTitle}>Genres:</span>
-        {getGenres().map((genre) => {
+        {getGenres().map((genre: any) => {
           return <span key={genre.id}>{genre.name}</span>;
         })}
       </div>
