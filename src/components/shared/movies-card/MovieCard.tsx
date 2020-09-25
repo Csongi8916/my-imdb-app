@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './MovieCard.module.css';
 
 export default function MovieCard(props: any) {
-  const { movie, genres } = props;
+  const { movie, genres, selectMovie } = props;
 
   const getGenres = () => {
     if (genres && genres.length > 0) {
@@ -13,15 +13,20 @@ export default function MovieCard(props: any) {
     return [];
   };
 
+  const handleClickMovieTitle = () => {
+    selectMovie(movie);
+  };
+
   return (
     <div className={style.MovieCard}>
-      {/*<img src={image} width='300' height='410' />*/}
-      <h3 className={style.Title}>{movie.title}</h3>
+      <h3 className={style.Title} onClick={handleClickMovieTitle}>
+        {movie.title}
+      </h3>
       <div className={style.DataContainer}>
         <span className={style.SubTitle}>Score: {movie.vote_average}</span>
         <span className={style.SubTitle}>Genres:</span>
         {getGenres().map((genre) => {
-          return <span>{genre.name}</span>;
+          return <span key={genre.id}>{genre.name}</span>;
         })}
       </div>
     </div>

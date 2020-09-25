@@ -24,14 +24,17 @@ const getMoviesQuery = gql`
   }
 `;*/
 
+const PARAM = 1;
+
 export default function MovieDetailResultPage(props: any) {
   const [movies, setMovies] = useState<Array<any>>([]);
   const [genres, setGenres] = useState<Array<any>>([]);
-  const [selectedMovie, setSelectedMovie] = useState<Array<any>>([]);
+  const [selectedMovie, setSelectedMovie] = useState({});
 
   useEffect(() => {
+    //setTimeout -> Just for spinner testing
     setTimeout(() => {
-      const searchParam: string = props.location.search ? props.location.search.split('=')[1] : '';
+      const searchParam: string = props.location.search ? props.location.search.split('=')[PARAM] : '';
       const fetchData = async () => {
         const genreResult = await axios.get(
           `https://api.themoviedb.org/3/genre/movie/list?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
@@ -51,7 +54,7 @@ export default function MovieDetailResultPage(props: any) {
       {movies && movies.length > 0 ? (
         <div className={style.MovieResult}>
           <MovieDetailTop movie={selectedMovie} />
-          <MoveResult movies={movies} genres={genres} />
+          <MoveResult movies={movies} genres={genres} selectMovie={setSelectedMovie} />
         </div>
       ) : (
         <div className={style.ProgressContainer}>
