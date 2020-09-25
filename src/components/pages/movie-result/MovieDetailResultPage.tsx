@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import style from './MovieDetailResultPage.module.css';
 
-import { gql, useQuery } from '@apollo/client';
+//import { gql, useQuery } from '@apollo/client';
 import axios from 'axios';
 import { CircularProgress } from '@material-ui/core';
 import MovieDetailTop from '../../shared/movie-detail-top';
@@ -54,7 +54,7 @@ export default function MovieDetailResultPage(props: any) {
         setMovies(moviesResult.data.results);
       } else {
         const moviesResult = await axios.get(
-          `https://api.themoviedb.org/3/movie/337401/similar?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
+          `https://api.themoviedb.org/3/movie/${needSimilarMovie.movieId}/similar?api_key=45ce11bdfe5c4088e8e575bb1e423f05&language=en-US`,
         );
         setMovies(moviesResult.data.results);
       }
