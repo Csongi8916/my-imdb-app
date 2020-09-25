@@ -6,11 +6,10 @@ export default function MovieCard(props: any) {
 
   const getGenres = () => {
     if (genres && genres.length > 0) {
-      genres.map((genre) => {
+      return genres.filter((genre) => {
         return movie.genre_ids.includes(genre.id);
       });
     }
-
     return [];
   };
 
@@ -19,11 +18,11 @@ export default function MovieCard(props: any) {
       {/*<img src={image} width='300' height='410' />*/}
       <h3 className={style.Title}>{movie.title}</h3>
       <div className={style.DataContainer}>
-        <span>Genres:</span>
+        <span className={style.SubTitle}>Score: {movie.vote_average}</span>
+        <span className={style.SubTitle}>Genres:</span>
         {getGenres().map((genre) => {
           return <span>{genre.name}</span>;
         })}
-        <span>Score: {movie.vote_average}</span>
       </div>
     </div>
   );

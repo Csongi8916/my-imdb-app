@@ -2,11 +2,12 @@
   margin: 25px 15px 25px 15px;
 }
 
-.MovieCard .Title {
-  cursor: pointer;
+.MovieCard .SubTitle {
+  font-weight: bold;
 }
 
 .MovieCard .Title:hover {
+  cursor: pointer;
   text-decoration: underline;
 }
 
